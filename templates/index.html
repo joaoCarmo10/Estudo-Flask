@@ -1,0 +1,18 @@
+
+{% extends 'base.html' %}
+{%block conteudo %}
+    <h2 class="text-center">Integrando html ao flask</h2>
+    <hr>
+    <form action="{{url_for('principal')}}" method="POST">
+        <label for="Conteudo" class="form-label">Conteúdo</label>
+        <input type="text" class="form-control" id="conteudo" name="conteudo">
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    Lista de conteúdos:
+    <ol class='list-group list-group-numbered'>
+        {% for conteudo in conteudos %}
+        <li class='list-group-item'>{{ conteudo }}</li>
+        {% endfor %}
+    </ol>
+{% endblock conteudo %}

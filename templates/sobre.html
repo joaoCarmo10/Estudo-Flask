@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{%block conteudo %}
+
+    <h2 class="text-center">Nota dos Alunos</h2>
+    <hr>
+  <form class="form-group" action="{{url_for('diario')}}", method='POST'>
+    <div class="mb-3 row">
+      <label for="alun" class="col-sm-2 col-form-label">Aluno</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="aluno" name='aluno' required>
+      </div>
+    </div>
+    <div class="mb-3 row">
+      <label for="not" class="col-sm-2 col-form-label">Nota</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="nota" name = 'nota' required>
+      </div>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </div>
+  </form>
+  {% for registro in registros %}
+    <details>
+      <summary>{{registro.aluno}}</summary>
+      <p>{{registro.nota}}</p>
+    </details>
+  {% endfor %}
+
+{% endblock conteudo %}
