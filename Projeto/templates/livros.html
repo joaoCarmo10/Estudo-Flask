@@ -23,9 +23,18 @@
                 <td>{{livro.valor}}</td>
                 <td>
                     <a href="{{livro.id}}/atualiza_livro" class="btn btn-secondary btn-xs">Editar</a>
+                    <a href="{{livro.id}}/remove_livro" class="btn btn-danger btn-xs" onclick="return confirm('Deseja excluir esse registro?')">Excluir</a>
                 </td>
             </tr>
         {% endfor %}
     </tbody>
 </table>
+{% if liv.has_prev %}
+    <a href="{{url_for('lista_livros', page=liv.prev_num)}}">Livros Anteriores</a>
+{% else %}
+    Livros Listados
+{% endif %}
+{% if liv.has_next %}
+    <a href="{{url_for('lista_livros', page=liv.next_num)}}">Proximos livros</a>
+{% endif %}
 {% endblock conteudo %}

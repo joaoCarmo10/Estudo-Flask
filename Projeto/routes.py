@@ -47,9 +47,12 @@ def lista_filmes(propriedade):
 
 @app.route('/livros')
 def lista_livros():
+    page = request.args.get('page', 1, type=int)
+    per_page = 4
+    todos_livros = livros.query.paginate(page=page, per_page=per_page)
     return render_template(
         'livros.html',
-        liv = livros.query.all()
+        liv = todos_livros
     )
 
 @app.route('/add_livro', methods=['GET','POST'])
@@ -87,3 +90,10 @@ def atualiza_livro(id):
         "atualiza_livro.html",
         livro = livro_bd
     )
+
+@app.route('/<int:id>/remove_livro')
+def remove_livro(id):
+    livro_bd = livros.query.filter_by(id=id).first()
+    db.session.delete(livro_bd)
+    db.session.commit()
+    return redirect(url_for('lista_livros'))
