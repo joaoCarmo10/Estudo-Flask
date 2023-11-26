@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<h2 class="text-center">Lista de Livros</h2>
+<hr>
+<a class="btn btn-secondary" href="{{url_for('adiciona_livro')}}">Adicionar Livro</a>
+<br><br>
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>id</th>
+            <th>nome</th>
+            <th>descricao</th>
+            <th>valor</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for livro in liv %}
+            <tr>
+                <td>{{livro.id}}</td>
+                <td>{{livro.nome}}</td>
+                <td>{{livro.descricao}}</td>
+                <td>{{livro.valor}}</td>
+                <td>
+                    <a href="{{livro.id}}/atualiza_livro" class="btn btn-secondary btn-xs">Editar</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock conteudo %}
